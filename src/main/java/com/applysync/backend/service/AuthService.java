@@ -14,11 +14,16 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public AuthService(UserRepository userRepository,
-                       PasswordEncoder passwordEncoder) {
+    public AuthService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            JwtService jwtService) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public AuthResponse signup(SignupRequest request) {
@@ -37,7 +42,9 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return new AuthResponse(null, "Signup successful");
+        String token = jwtService.generateToken(user.getEmail());
+
+        return new AuthResponse(token, "Signup successful");
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -45,10 +52,13 @@ public class AuthService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!passwordEncoder.matches(request.password(), user.getPasswordHash())) {
+        if (!passwordEncoder.matches(
+                request.password(), user.getPasswordHash())) {
             throw new RuntimeException("Invalid password");
         }
 
-        return new AuthResponse(null, "Login successful");
+        String token = jwtService.generateToken(user.getEmail());
+
+        return new AuthResponse(token, "Login successful");
     }
 }
