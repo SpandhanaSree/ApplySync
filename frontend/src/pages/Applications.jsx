@@ -4,6 +4,8 @@ import api from "../services/api";
 function Applications() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+const [statusFilter, setStatusFilter] = useState("ALL");
   const [message, setMessage] = useState("");
   const [editingId, setEditingId] = useState(null);
 
@@ -43,6 +45,11 @@ function Applications() {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
+
+  if (!formData.company.trim() || !formData.role.trim() || !formData.platform) {
+    setMessage("Please enter company, role, and platform.");
+    return;
+  }
 
   try {
     if (editingId) {
@@ -105,6 +112,21 @@ function Applications() {
       setMessage("Failed to delete application.");
     }
   };
+
+  const filteredApplications = applications.filter((application) => {
+  const matchesSearch =
+    application.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    application.role?.toLowerCase().includes(searchTerm.toLowerCase());
+
+  const matchesStatus =
+    statusFilter === "ALL" || application.status === statusFilter;
+
+  return matchesSearch && matchesStatus;
+});
+
+const sortedApplications = [...filteredApplications].sort(
+  (a, b) => new Date(b.appliedDate) - new Date(a.appliedDate)
+);
 
   return (
     <div className="applications-container">
@@ -197,31 +219,66 @@ function Applications() {
   {editingId ? "Update Application" : "Add Application"}
 </button>
       </form>
+      <div className="application-filters">
+  <input
+    type="text"
+    placeholder="Search by company or role..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
 
-      <h2>My Applications</h2>
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option value="ALL">All Statuses</option>
+    <option value="APPLIED">Applied</option>
+    <option value="INTERVIEW">Interview</option>
+    <option value="OFFER">Offer</option>
+    <option value="REJECTED">Rejected</option>
+  </select>
+</div>
 
-      {loading ? (
-        <p>Loading applications...</p>
-      ) : applications.length === 0 ? (
-        <p>No applications added yet.</p>
-      ) : (
-        applications.map((application) => (
-          <div className="application-card" key={application.id}>
-            <h3>{application.company}</h3>
-            <p>Role: {application.role}</p>
-            <p>Platform: {application.platform}</p>
-            <p>Status: {application.status}</p>
-            <p>Applied Date: {application.appliedDate || "Not specified"}</p>
+    <h2>My Applications</h2>
 
-            <button onClick={() => handleEdit(application)}>
-                Edit
-            </button>
-            <button onClick={() => handleDelete(application.id)}>
-              Delete
-            </button>
-          </div>
-        ))
-      )}
+{loading ? (
+  <p>Loading applications...</p>
+) : sortedApplications.length === 0 ? (
+  <p>No applications added yet.</p>
+) : (
+  sortedApplications.map((application) => (
+    <div className="application-card" key={application.id}>
+      <h3>{application.company}</h3>
+      <p>Role: {application.role}</p>
+      <p>Platform: {application.platform}</p>
+      <p>Status: {application.status}</p>
+      <p>Applied Date: {application.appliedDate || "Not specified"}</p>
+
+      {application.interviewDate && (
+  <p>
+    📅 Interview Date:{" "}
+    {new Date(application.interviewDate).toLocaleString()}
+  </p>
+)}
+
+      {application.deadline && (
+  <p>
+    Deadline: {application.deadline}
+    {new Date(application.deadline + "T00:00:00") < new Date(new Date().toDateString())
+      ? " ⚠️ Deadline passed"
+      : Math.ceil(
+          (new Date(application.deadline + "T00:00:00") - new Date(new Date().toDateString())) / (1000 * 60 * 60 * 24)
+        ) <= 3
+      ? " ⚠️ Deadline approaching"
+      : ""}
+  </p>
+)}
+
+      <button onClick={() => handleEdit(application)}>Edit</button>
+      <button onClick={() => handleDelete(application.id)}>Delete</button>
+    </div>
+  ))
+)}
     </div>
   );
 }

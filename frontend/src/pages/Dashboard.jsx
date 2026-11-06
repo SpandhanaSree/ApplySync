@@ -15,6 +15,7 @@ function Dashboard() {
   });
 
   const [loading, setLoading] = useState(true);
+  const [upcomingInterviews, setUpcomingInterviews] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -22,6 +23,17 @@ function Dashboard() {
       try {
         const response = await api.get("/dashboard");
         setStats(response.data);
+        const applicationsResponse = await api.get("/applications");
+
+const interviews = applicationsResponse.data.filter((application) => {
+  return (
+    application.status === "INTERVIEW" &&
+    application.interviewDate &&
+    new Date(application.interviewDate) >= new Date()
+  );
+});
+
+setUpcomingInterviews(interviews);
       } catch (err) {
         setError("Unable to load dashboard. Please login again.");
 
@@ -93,6 +105,24 @@ function Dashboard() {
           <h2>{stats.rejected}</h2>
         </div>
       </div>
+      <div className="upcoming-interviews">
+  <h2>Upcoming Interviews</h2>
+
+  {upcomingInterviews.length === 0 ? (
+    <p>No upcoming interviews scheduled.</p>
+  ) : (
+    upcomingInterviews.map((application) => (
+      <div className="interview-card" key={application.id}>
+        <h3>{application.company}</h3>
+        <p>Role: {application.role}</p>
+        <p>
+          Interview Date:{" "}
+          {new Date(application.interviewDate).toLocaleString()}
+        </p>
+      </div>
+    ))
+  )}
+</div>
     </div>
   );
 }
