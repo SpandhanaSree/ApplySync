@@ -9,24 +9,27 @@ body {
   background: #f4f7fb;
 }
 
+/* LOGIN PAGE */
+
 .login-container {
-  width: 100%;
+  width: 90%;
   max-width: 420px;
-  margin: 100px auto;
+  margin: 70px auto;
   padding: 35px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(67, 56, 202, 0.10);
   text-align: center;
 }
 
 .login-container h1 {
-  color: #2563eb;
+  color: #4338ca;
   margin-bottom: 12px;
+  font-size: 30px;
 }
 
 .login-container p {
-  color: #666;
+  color: #64748b;
   margin-bottom: 22px;
 }
 
@@ -37,33 +40,36 @@ body {
 }
 
 .login-container input {
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 7px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dbe0ea;
+  border-radius: 9px;
   font-size: 15px;
   outline: none;
 }
 
 .login-container input:focus {
-  border-color: #2563eb;
+  border-color: #6366f1;
 }
 
 .login-container button {
-  padding: 13px;
-  background: #2563eb;
+  padding: 14px;
+  background: #4338ca;
   color: white;
   border: none;
-  border-radius: 7px;
+  border-radius: 9px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .login-container button:hover {
-  background: #1d4ed8;
+  background: #3730a3;
 }
 
 .login-container a {
-  color: #2563eb;
+  color: #4338ca;
   text-decoration: none;
   font-weight: bold;
 }
@@ -323,4 +329,127 @@ body {
 
 .interview-card p {
   margin: 5px 0;
+}
+
+/* Responsive improvements */
+@media (max-width: 650px) {
+
+  /* Dashboard */
+  .dashboard-container header {
+    width: 100%;
+  }
+
+  .dashboard-container header button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Application filters */
+  .application-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .application-filters input,
+  .application-filters select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Application cards */
+  .application-card {
+    padding: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .application-card button {
+    margin: 5px 5px 5px 0;
+  }
+
+  /* Interview section */
+  .upcoming-interviews {
+    padding: 18px;
+    margin: 20px 0;
+  }
+
+  .interview-card {
+    overflow-wrap: anywhere;
+  }
+
+  /* Buttons */
+  button {
+    max-width: 100%;
+  }
+}
+
+/* Tablet layout */
+@media (min-width: 651px) and (max-width: 900px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .application-filters {
+    display: flex;
+    gap: 12px;
+  }
+
+  .application-filters input {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* GLOBAL BUTTON POLISH */
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* APPLICATION FILTERS */
+
+.application-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.application-filters input,
+.application-filters select {
+  padding: 12px;
+  border: 1px solid #dbe0ea;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.application-filters input:focus,
+.application-filters select:focus {
+  border-color: #6366f1;
+}
+
+/* CARD POLISH */
+
+.application-card,
+.interview-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-card:hover,
+.interview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.07);
 }
