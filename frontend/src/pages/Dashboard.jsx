@@ -74,7 +74,7 @@ setUpcomingInterviews(interviews);
              </div>
         </header>
 
-      <h2>Welcome to ApplySync!</h2>
+      <h2 className="welcome-heading">Welcome to ApplySync!</h2>
       <p>Track all your job applications in one place.</p>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
