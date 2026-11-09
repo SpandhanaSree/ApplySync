@@ -130,115 +130,25 @@ const sortedApplications = [...filteredApplications].sort(
 
   return (
     <div className="applications-container">
-        <h2>{editingId ? "Edit Application" : "Add New Application"}</h2>
 
-      {message && <p>{message}</p>}
+  <header className="applications-header">
+    <div>
+      <h1>My Applications</h1>
+      <p>Manage and track all your job applications.</p>
+    </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="company"
-          placeholder="Company Name"
-          value={formData.company}
-          onChange={handleChange}
-          required
-        />
+    <button
+      className="back-dashboard-btn"
+      onClick={() => window.location.href = "/dashboard"}
+    >
+      Back to Dashboard
+    </button>
+  </header>
 
-        <input
-          name="role"
-          placeholder="Job Role"
-          value={formData.role}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          name="jobUrl"
-          placeholder="Job URL"
-          value={formData.jobUrl}
-          onChange={handleChange}
-        />
-
-        <select
-          name="platform"
-          value={formData.platform}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Platform</option>
-          <option value="LinkedIn">LinkedIn</option>
-          <option value="Naukri">Naukri</option>
-          <option value="Internshala">Internshala</option>
-          <option value="Unstop">Unstop</option>
-          <option value="Company Website">Company Website</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <label>Applied Date</label>
-        <input
-          type="date"
-          name="appliedDate"
-          value={formData.appliedDate}
-          onChange={handleChange}
-        />
-
-        <label>Application Deadline</label>
-        <input
-          type="date"
-          name="deadline"
-          value={formData.deadline}
-          onChange={handleChange}
-        />
-
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-        >
-          <option value="APPLIED">Applied</option>
-          <option value="INTERVIEW">Interview</option>
-          <option value="OFFER">Offer</option>
-          <option value="REJECTED">Rejected</option>
-        </select>
-
-        <label>Interview Date</label>
-        <input
-          type="datetime-local"
-          name="interviewDate"
-          value={formData.interviewDate}
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="notes"
-          placeholder="Additional Notes"
-          value={formData.notes}
-          onChange={handleChange}
-        />
-
-        <button type="submit">
-  {editingId ? "Update Application" : "Add Application"}
-</button>
-      </form>
-      <div className="application-filters">
-  <input
-    type="text"
-    placeholder="Search by company or role..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-
-  <select
-    value={statusFilter}
-    onChange={(e) => setStatusFilter(e.target.value)}
-  >
-    <option value="ALL">All Statuses</option>
-    <option value="APPLIED">Applied</option>
-    <option value="INTERVIEW">Interview</option>
-    <option value="OFFER">Offer</option>
-    <option value="REJECTED">Rejected</option>
-  </select>
-</div>
-
+  <h2 className="form-heading">
+    {editingId ? "Edit Application" : "Add New Application"}
+  </h2>
+  
     <h2>My Applications</h2>
 
 {loading ? (
