@@ -84,6 +84,13 @@ return (
         </button>
 
         <button
+  className="sidebar-link"
+  onClick={() => navigate("/profile")}
+>
+  <span>♙</span> My Profile
+</button>
+
+        <button
           className="sidebar-link"
           onClick={() => navigate("/applications")}
         >

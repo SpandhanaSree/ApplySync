@@ -1,12 +1,20 @@
 
-/* ==============================
-   GLOBAL STYLES
-============================== */
+/* =========================================
+   1. GLOBAL STYLES
+========================================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
 }
 
 body {
@@ -17,18 +25,24 @@ body {
 
 #root {
   min-height: 100vh;
-  background-color: #DCEBDD;
 }
 
-body,
-#root,
-.dashboard-container {
-  background-color: #B8C7D9;
+button {
+  transition: all 0.2s ease;
 }
 
-/* ==============================
-   LOGIN & SIGNUP PAGE
-============================== */
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   2. LOGIN & SIGNUP PAGE
+========================================= */
 
 .login-container {
   width: 90%;
@@ -65,6 +79,8 @@ body,
   border-radius: 9px;
   font-size: 15px;
   outline: none;
+  color: #1e293b;
+  background: #ffffff;
 }
 
 .login-container input:focus {
@@ -92,424 +108,17 @@ body,
   font-weight: bold;
 }
 
-/* ==============================
-   DASHBOARD PAGE
-============================== */
 
-.dashboard-container {
-  min-height: 100vh;
-  padding: 35px 6%;
-  background-color: #B8C7D9;
-  color: #1e293b;
-}
-
-.dashboard-container header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 25px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
-  margin-bottom: 35px;
-}
-
-.dashboard-container header h1 {
-  color: #4338ca;
-  font-size: 25px;
-}
-
-.dashboard-container header button {
-  padding: 10px 18px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #4338ca;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.dashboard-container header button:hover {
-  background: #3730a3;
-}
-
-/* Welcome section */
-
-.dashboard-container > .welcome-heading {
-  color: #3730a3;
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 10px;
-}
-
-.dashboard-container > p {
-  color: #334155;
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Dashboard statistics */
-
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 25px;
-}
-
-.stat-card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 14px;
-  border: 1px solid #e8eaf3;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-}
-
-.stat-card h3 {
-  color: #334155;
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-
-.stat-card h2 {
-  color: #4338ca;
-  font-size: 38px;
-  font-weight: 700;
-}
-
-/* ==============================
-   UPCOMING INTERVIEWS
-============================== */
-
-.upcoming-interviews {
-  background: #ffffff;
-  padding: 25px;
-  margin: 30px 0;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.upcoming-interviews h2 {
-  margin-bottom: 20px;
-  color: #312e81;
-  text-align: center;
-}
-
-.interview-card {
-  background: #f0f5ef;
-  border-left: 4px solid #4338ca;
-  padding: 15px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.interview-card h3 {
-  color: #3730a3;
-  margin-bottom: 8px;
-}
-
-.interview-card p {
-  color: #334155;
-  margin: 5px 0;
-}
-
-.interview-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.07);
-}
-
-/* ==============================
-   APPLICATIONS PAGE
-============================== */
-
-.applications-container {
-  max-width: 1100px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 40px 30px;
-  background: #DCEBDD;
-  color: #1e293b;
-}
-
-.applications-container h2 {
-  margin: 25px 0 20px;
-  font-size: 25px;
-  color: #312e81;
-}
-
-.applications-container form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-}
-
-.applications-container input,
-.applications-container select,
-.applications-container textarea {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #dbe0ea;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  background: #ffffff;
-}
-
-.applications-container input:focus,
-.applications-container select:focus,
-.applications-container textarea:focus {
-  border-color: #6366f1;
-}
-
-.applications-container label {
-  align-self: center;
-  color: #475569;
-  font-size: 14px;
-}
-
-.applications-container textarea {
-  grid-column: span 2;
-  min-height: 90px;
-  resize: vertical;
-}
-
-.applications-container form button {
-  grid-column: span 2;
-  padding: 13px;
-  border: none;
-  border-radius: 8px;
-  background: #4338ca;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.applications-container form button:hover {
-  background: #3730a3;
-}
-
-/* Application filters */
-
-.application-filters {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.application-filters input,
-.application-filters select {
-  padding: 12px;
-  border: 1px solid #dbe0ea;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  background: #ffffff;
-}
-
-.application-filters input:focus,
-.application-filters select:focus {
-  border-color: #6366f1;
-}
-
-/* Application cards */
-
-.application-card {
-  margin-bottom: 18px;
-  padding: 22px;
-  background: #ffffff;
-  border: 1px solid #e8eaf3;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.application-card h3 {
-  color: #4338ca;
-  font-size: 20px;
-  margin-bottom: 12px;
-}
-
-.application-card p {
-  color: #475569;
-  margin: 8px 0;
-}
-
-.application-card button {
-  margin-top: 14px;
-  margin-right: 10px;
-  padding: 9px 17px;
-  border: none;
-  border-radius: 7px;
-  background: #4338ca;
-  color: white;
-  cursor: pointer;
-}
-
-.application-card button:hover {
-  opacity: 0.85;
-}
-
-.application-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.07);
-}
-
-/* ==============================
-   GLOBAL BUTTON STYLES
-============================== */
-
-button {
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(0);
-}
-
-/* ==============================
-   TABLET RESPONSIVENESS
-============================== */
-
-@media (min-width: 651px) and (max-width: 1100px) {
-  .stats-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .application-filters {
-    display: flex;
-    gap: 12px;
-  }
-
-  .application-filters input {
-    flex: 1;
-    min-width: 0;
-  }
-}
-
-/* ==============================
-   MOBILE RESPONSIVENESS
-============================== */
-
-@media (max-width: 650px) {
-
-  .dashboard-container {
-    padding: 20px 4%;
-  }
-
-  .dashboard-container header {
-    width: 100%;
-    flex-direction: column;
-    gap: 18px;
-    align-items: flex-start;
-  }
-
-  .dashboard-container header button {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-
-  .dashboard-container > .welcome-heading {
-    font-size: 24px;
-    margin-top: 25px;
-  }
-
-  .dashboard-container > p {
-    font-size: 15px;
-  }
-
-  .stats-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
-  }
-
-  .stat-card {
-    padding: 20px 12px;
-  }
-
-  .stat-card h3 {
-    font-size: 14px;
-  }
-
-  .stat-card h2 {
-    font-size: 30px;
-  }
-
-  .applications-container {
-    padding: 20px 15px;
-  }
-
-  .applications-container form {
-    grid-template-columns: 1fr;
-    padding: 18px;
-  }
-
-  .applications-container textarea,
-  .applications-container form button {
-    grid-column: span 1;
-  }
-
-  .application-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .application-filters input,
-  .application-filters select {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .application-card {
-    padding: 16px;
-    overflow-wrap: anywhere;
-  }
-
-  .application-card button {
-    margin: 5px 5px 5px 0;
-  }
-
-  .upcoming-interviews {
-    padding: 18px;
-    margin: 20px 0;
-  }
-
-  .interview-card {
-    overflow-wrap: anywhere;
-  }
-
-  button {
-    max-width: 100%;
-  }
-}
-
-/* DASHBOARD SIDEBAR */
+/* =========================================
+   3. DASHBOARD LAYOUT & SIDEBAR
+========================================= */
 
 .dashboard-layout {
   display: flex;
+  width: 100%;
+  max-width: none;
   min-height: 100vh;
+  margin: 0;
   background-color: #B8C7D9;
 }
 
@@ -569,50 +178,53 @@ button:active {
   background: #fef2f2;
 }
 
+
+/* =========================================
+   4. DASHBOARD MAIN CONTENT
+========================================= */
+
 .dashboard-container {
   flex: 1;
   min-width: 0;
+  width: auto;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
   padding: 35px;
+  border: none;
+  background-color: #B8C7D9;
+  color: #1e293b;
 }
 
-.dashboard-header {
-  background: #ffffff;
+.dashboard-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px 25px;
+  background: #ffffff;
   border-radius: 14px;
-  margin-bottom: 30px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+  margin-bottom: 35px;
 }
 
-.dashboard-header h1 {
+.dashboard-container header h1 {
   color: #4338ca;
   font-size: 25px;
 }
 
-@media (max-width: 650px) {
-  .dashboard-layout {
-    flex-direction: column;
-  }
+.dashboard-container header button {
+  padding: 10px 18px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #4338ca;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
 
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-    padding: 18px;
-  }
-
-  .sidebar-logo {
-    margin-bottom: 18px;
-  }
-
-  .sidebar-nav {
-    gap: 5px;
-  }
-
-  .sidebar-logout {
-    margin-top: 12px;
-  }
-
-  .dashboard-container {
-    padding: 20px 4%;
-  }
+.dashboard-container header button:hover {
+  background: #3730a3;
 }
 
 .dashboard-header {
@@ -653,14 +265,26 @@ button:active {
   background: #3730a3;
 }
 
-@media (max-width: 650px) {
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.dashboard-container > .welcome-heading {
+  color: #3730a3;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
-/* ENHANCED STATISTICS CARDS */
+.dashboard-container > p {
+  color: #334155;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+/* =========================================
+   5. DASHBOARD STATISTICS
+========================================= */
 
 .stats-container {
   display: grid;
@@ -688,6 +312,13 @@ button:active {
   color: #64748b;
   font-size: 14px;
   font-weight: 600;
+}
+
+.stat-card h3 {
+  color: #334155;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 18px;
 }
 
 .stat-card h2 {
@@ -723,28 +354,10 @@ button:active {
   border-top: 4px solid #dc2626;
 }
 
-@media (max-width: 1100px) {
-  .stats-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
 
-@media (max-width: 650px) {
-  .stats-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .stat-card {
-    padding: 20px 14px;
-  }
-
-  .stat-card h2 {
-    font-size: 28px;
-  }
-}
-
-/* APPLICATION STATUS ANALYTICS */
+/* =========================================
+   6. APPLICATION STATUS ANALYTICS
+========================================= */
 
 .analytics-section {
   background: #ffffff;
@@ -797,13 +410,10 @@ button:active {
   transition: width 0.5s ease;
 }
 
-@media (max-width: 650px) {
-  .analytics-section {
-    padding: 20px;
-  }
-}
 
-/* UPCOMING INTERVIEWS ENHANCEMENT */
+/* =========================================
+   7. UPCOMING INTERVIEWS
+========================================= */
 
 .upcoming-interviews {
   background: #ffffff;
@@ -812,6 +422,12 @@ button:active {
   border-radius: 14px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 12px rgba(30, 41, 59, 0.05);
+}
+
+.upcoming-interviews h2 {
+  margin-bottom: 20px;
+  color: #312e81;
+  text-align: center;
 }
 
 .section-heading {
@@ -875,6 +491,11 @@ button:active {
   margin: 0;
 }
 
+.interview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.07);
+}
+
 .interview-date {
   display: flex;
   flex-direction: column;
@@ -904,27 +525,10 @@ button:active {
   text-align: center;
 }
 
-@media (max-width: 650px) {
-  .upcoming-interviews {
-    padding: 20px;
-  }
 
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .interview-card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .interview-date {
-    text-align: left;
-  }
-}
-
-/* RECENT APPLICATIONS */
+/* =========================================
+   8. RECENT APPLICATIONS ON DASHBOARD
+========================================= */
 
 .recent-applications {
   background: #ffffff;
@@ -992,20 +596,26 @@ button:active {
   font-size: 13px;
 }
 
+
+/* =========================================
+   9. SHARED STATUS BADGES
+========================================= */
+
 .status-badge {
   display: inline-block;
   width: fit-content;
-  padding: 7px 12px;
+  padding: 7px 13px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
+  white-space: nowrap;
   background: #eef0ff;
   color: #4338ca;
 }
 
 .status-badge.applied {
-  background: #dbeafe;
-  color: #1d4ed8;
+  background: #e0edff;
+  color: #2563eb;
 }
 
 .status-badge.interview {
@@ -1020,35 +630,31 @@ button:active {
 
 .status-badge.rejected {
   background: #fee2e2;
-  color: #b91c1c;
+  color: #dc2626;
 }
 
-.empty-applications {
-  padding: 22px;
-  text-align: center;
-  color: #64748b;
-  background: #f8fafc;
-  border-radius: 9px;
+
+/* =========================================
+   10. APPLICATIONS PAGE - MAIN LAYOUT
+========================================= */
+
+.applications-container {
+  width: 90%;
+  max-width: 1100px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 35px 30px;
+  background: #DCEBDD;
+  color: #1e293b;
+  box-sizing: border-box;
 }
 
-@media (max-width: 800px) {
-  .recent-application-card {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.applications-container h2 {
+  margin: 25px 0 20px;
+  font-size: 25px;
+  color: #312e81;
 }
 
-@media (max-width: 500px) {
-  .recent-applications {
-    padding: 18px;
-  }
-
-  .recent-application-card {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-/* My Applications Header */
 .applications-header {
   display: flex;
   justify-content: space-between;
@@ -1081,7 +687,6 @@ button:active {
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .back-dashboard-btn:hover {
@@ -1094,67 +699,56 @@ button:active {
   font-size: 23px;
 }
 
-@media (max-width: 650px) {
-  .applications-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
 
-/* FIX: Full-width dashboard layout */
-
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  border: none;
-}
-
-.dashboard-layout {
-  width: 100%;
-  max-width: none;
-  min-height: 100vh;
-  margin: 0;
-  border: none;
-}
-
-.dashboard-container {
-  flex: 1;
-  min-width: 0;
-  width: auto;
-  max-width: none;
-  margin: 0;
-  border: none;
-  padding: 35px;
-}
-
-/* Enhanced Add/Edit Application Form */
+/* =========================================
+   11. ADD / EDIT APPLICATION FORM
+========================================= */
 
 .applications-container form {
-  background: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 850px;
+  margin: 20px auto 35px;
   padding: 30px;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   box-shadow: 0 5px 18px rgba(30, 41, 59, 0.06);
-  gap: 20px;
+  box-sizing: border-box;
 }
 
 .applications-container label {
+  align-self: center;
+  color: #334155;
   font-size: 14px;
   font-weight: 600;
-  color: #334155;
 }
 
 .applications-container input,
 .applications-container select,
 .applications-container textarea {
+  width: 100%;
+  min-width: 0;
   padding: 14px;
   border: 1px solid #cbd5e1;
   border-radius: 9px;
   font-size: 14px;
-  transition: 0.2s ease;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #ffffff;
+  outline: none;
+  opacity: 1;
+  -webkit-text-fill-color: #1e293b;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.applications-container input::placeholder,
+.applications-container textarea::placeholder {
+  color: #64748b;
+  -webkit-text-fill-color: #64748b;
+  opacity: 1;
 }
 
 .applications-container input:focus,
@@ -1164,29 +758,80 @@ body,
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
+.applications-container textarea {
+  grid-column: span 2;
+  min-height: 90px;
+  resize: vertical;
+}
+
 .applications-container form button {
+  grid-column: span 2;
   padding: 14px;
+  border: none;
   border-radius: 9px;
+  background: #4338ca;
+  color: white;
   font-size: 15px;
   font-weight: 600;
+  cursor: pointer;
 }
 
-.applications-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 35px 30px;
-  box-sizing: border-box;
+.applications-container form button:hover {
+  background: #3730a3;
 }
 
-.applications-container form {
+
+/* =========================================
+   12. SEARCH & STATUS FILTERS
+========================================= */
+
+.applications-filters,
+.application-filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
   width: 100%;
-  max-width: 850px;
-  margin: 20px auto 35px;
+  margin: 20px 0 25px;
+}
+
+.applications-filters input,
+.applications-filters select,
+.application-filters input,
+.application-filters select {
+  padding: 12px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+  outline: none;
+}
+
+.applications-filters input,
+.application-filters input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 
-/* Enhanced Application Cards */
+.applications-filters select,
+.application-filters select {
+  flex: 0 0 220px;
+  width: 220px;
+}
+
+.applications-filters input:focus,
+.applications-filters select:focus,
+.application-filters input:focus,
+.application-filters select:focus {
+  border-color: #6366f1;
+}
+
+
+/* =========================================
+   13. APPLICATION CARDS
+========================================= */
 
 .application-card {
   background: #ffffff;
@@ -1236,38 +881,21 @@ body,
   margin: 0;
   color: #475569;
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .application-details strong {
   color: #334155;
 }
 
-.status-badge {
-  padding: 7px 13px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
+.job-link {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.status-badge.applied {
-  background: #e0edff;
-  color: #2563eb;
-}
-
-.status-badge.interview {
-  background: #fef3c7;
-  color: #b45309;
-}
-
-.status-badge.offer {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.status-badge.rejected {
-  background: #fee2e2;
-  color: #dc2626;
+.job-link:hover {
+  text-decoration: underline;
 }
 
 .application-card-actions {
@@ -1283,7 +911,6 @@ body,
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .application-card-actions button:first-child {
@@ -1300,25 +927,10 @@ body,
   opacity: 0.8;
 }
 
-@media (max-width: 600px) {
-  .application-details {
-    grid-template-columns: 1fr;
-  }
 
-  .application-card-header {
-    flex-direction: column;
-  }
-}
-
-.job-link {
-  color: #4f46e5;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.job-link:hover {
-  text-decoration: underline;
-}
+/* =========================================
+   14. EMPTY STATES & MESSAGES
+========================================= */
 
 .empty-applications {
   background: #ffffff;
@@ -1327,6 +939,7 @@ body,
   padding: 45px 20px;
   text-align: center;
   margin-top: 20px;
+  color: #64748b;
 }
 
 .empty-applications h3 {
@@ -1340,14 +953,204 @@ body,
   font-size: 14px;
 }
 
-@media (max-width: 600px) {
+.form-message {
+  color: #334155;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+
+/* =========================================
+   15. TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1100px) {
+  .stats-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .recent-application-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================
+   16. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 650px) {
+
+  /* Dashboard layout */
+
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 18px;
+  }
+
+  .sidebar-nav {
+    gap: 5px;
+  }
+
+  .sidebar-logout {
+    margin-top: 12px;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    padding: 20px 4%;
+  }
+
+  .dashboard-container header {
+    width: 100%;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .dashboard-container header button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .dashboard-container > .welcome-heading {
+    font-size: 24px;
+    margin-top: 25px;
+  }
+
+  .dashboard-container > p {
+    font-size: 15px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Dashboard statistics */
+
+  .stats-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 20px 14px;
+  }
+
+  .stat-card h3 {
+    font-size: 14px;
+  }
+
+  .stat-card h2 {
+    font-size: 28px;
+  }
+
+  /* Dashboard analytics */
+
+  .analytics-section {
+    padding: 20px;
+  }
+
+  /* Upcoming interviews */
+
+  .upcoming-interviews {
+    padding: 20px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .interview-card {
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-wrap: anywhere;
+  }
+
+  .interview-date {
+    text-align: left;
+  }
+
+  /* Recent applications */
+
+  .recent-applications {
+    padding: 18px;
+  }
+
+  .recent-application-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Applications page */
+
   .applications-container {
     width: 100%;
     padding: 20px 14px;
   }
 
+  .applications-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  /* Application form */
+
+  .applications-container form {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .applications-container textarea,
+  .applications-container form button {
+    grid-column: span 1;
+  }
+
+  /* Search and filters */
+
+  .applications-filters,
+  .application-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .applications-filters input,
+  .applications-filters select,
+  .application-filters input,
+  .application-filters select {
+    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Application cards */
+
   .application-card {
     padding: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .application-card-header {
+    flex-direction: column;
+  }
+
+  .application-details {
+    grid-template-columns: 1fr;
   }
 
   .application-card-actions {
@@ -1358,9 +1161,13 @@ body,
     flex: 1;
   }
 
-  .applications-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .stats-container {
+    grid-template-columns: 1fr;
   }
 }

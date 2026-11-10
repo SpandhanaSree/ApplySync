@@ -150,6 +150,27 @@ const sortedApplications = [...filteredApplications].sort(
     <div>
       <h1>My Applications</h1>
       <p>Manage and track all your job applications.</p>
+      <div className="applications-filters">
+
+  <input
+    type="text"
+    placeholder="Search by company or role..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option value="ALL">All Status</option>
+    <option value="APPLIED">Applied</option>
+    <option value="INTERVIEW">Interview</option>
+    <option value="OFFER">Offer</option>
+    <option value="REJECTED">Rejected</option>
+  </select>
+
+</div>
     </div>
 
     <button
