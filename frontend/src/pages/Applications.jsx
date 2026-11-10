@@ -52,14 +52,22 @@ const [statusFilter, setStatusFilter] = useState("ALL");
   }
 
   try {
-    if (editingId) {
-      await api.put(`/applications/${editingId}`, formData);
-      setMessage("Application updated successfully!");
-    } else {
-      await api.post("/applications", formData);
-      setMessage("Application added successfully!");
-    }
+    const updatedFormData = {
+  ...formData,
+  jobUrl: formData.jobUrl.trim()
+    ? formData.jobUrl.trim().startsWith("http")
+      ? formData.jobUrl.trim()
+      : `https://${formData.jobUrl.trim()}`
+    : "",
+};
 
+if (editingId) {
+  await api.put(`/applications/${editingId}`, updatedFormData);
+  setMessage("Application updated successfully!");
+} else {
+  await api.post("/applications", updatedFormData);
+  setMessage("Application added successfully!");
+}
     setEditingId(null);
 
     setFormData({
@@ -102,16 +110,23 @@ const [statusFilter, setStatusFilter] = useState("ALL");
     behavior: "smooth",
   });
 };
-
   const handleDelete = async (id) => {
-    try {
-      await api.delete(`/applications/${id}`);
-      setMessage("Application deleted successfully!");
-      fetchApplications();
-    } catch (error) {
-      setMessage("Failed to delete application.");
-    }
-  };
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this application?"
+  );
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    await api.delete(`/applications/${id}`);
+    setMessage("Application deleted successfully!");
+    fetchApplications();
+  } catch (error) {
+    setMessage("Failed to delete application.");
+  }
+};
 
   const filteredApplications = applications.filter((application) => {
   const matchesSearch =
@@ -147,49 +162,165 @@ const sortedApplications = [...filteredApplications].sort(
 
   <h2 className="form-heading">
     {editingId ? "Edit Application" : "Add New Application"}
+
+<form onSubmit={handleSubmit}>
+  <label>Company Name</label>
+  <input
+    type="text"
+    name="company"
+    placeholder="Enter company name"
+    value={formData.company}
+    onChange={handleChange}
+    required
+  />
+
+  <label>Job Role</label>
+  <input
+    type="text"
+    name="role"
+    placeholder="Enter job role"
+    value={formData.role}
+    onChange={handleChange}
+    required
+  />
+
+  <label>Job URL</label>
+  <input
+    type="text"
+    name="jobUrl"
+    placeholder="Paste job link"
+    value={formData.jobUrl}
+    onChange={handleChange}
+  />
+
+  <label>Platform</label>
+  <select
+    name="platform"
+    value={formData.platform}
+    onChange={handleChange}
+    required
+  >
+    <option value="">Select Platform</option>
+    <option value="LinkedIn">LinkedIn</option>
+    <option value="Naukri">Naukri</option>
+    <option value="Internshala">Internshala</option>
+    <option value="Unstop">Unstop</option>
+    <option value="Company Website">Company Website</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>Applied Date</label>
+  <input
+    type="date"
+    name="appliedDate"
+    value={formData.appliedDate}
+    onChange={handleChange}
+  />
+
+  <label>Application Deadline</label>
+  <input
+    type="date"
+    name="deadline"
+    value={formData.deadline}
+    onChange={handleChange}
+  />
+
+  <label>Status</label>
+  <select
+    name="status"
+    value={formData.status}
+    onChange={handleChange}
+  >
+    <option value="APPLIED">Applied</option>
+    <option value="INTERVIEW">Interview</option>
+    <option value="OFFER">Offer</option>
+    <option value="REJECTED">Rejected</option>
+  </select>
+
+  <label>Interview Date</label>
+  <input
+    type="datetime-local"
+    name="interviewDate"
+    value={formData.interviewDate}
+    onChange={handleChange}
+  />
+
+  <label>Notes</label>
+  <textarea
+    name="notes"
+    placeholder="Add any additional notes"
+    value={formData.notes}
+    onChange={handleChange}
+  />
+
+  <button type="submit">
+    {editingId ? "Update Application" : "Add Application"}
+  </button>
+</form>
+
+{message && <p className="form-message">{message}</p>}
+
   </h2>
   
     <h2>My Applications</h2>
-
-{loading ? (
+    {loading ? (
   <p>Loading applications...</p>
 ) : sortedApplications.length === 0 ? (
-  <p>No applications added yet.</p>
+  <div className="empty-applications">
+    <h3>No applications found</h3>
+    <p>
+      Start tracking your job applications by adding your first application.
+    </p>
+  </div>
 ) : (
   sortedApplications.map((application) => (
     <div className="application-card" key={application.id}>
-      <h3>{application.company}</h3>
-      <p>Role: {application.role}</p>
-      <p>Platform: {application.platform}</p>
-      <p>Status: {application.status}</p>
-      <p>Applied Date: {application.appliedDate || "Not specified"}</p>
 
-      {application.interviewDate && (
-  <p>
-    📅 Interview Date:{" "}
-    {new Date(application.interviewDate).toLocaleString()}
-  </p>
-)}
+      <div className="application-card-header">
+        <div>
+          <h3>{application.company}</h3>
+          <p className="application-role">{application.role}</p>
+        </div>
 
-      {application.deadline && (
-  <p>
-    Deadline: {application.deadline}
-    {new Date(application.deadline + "T00:00:00") < new Date(new Date().toDateString())
-      ? " ⚠️ Deadline passed"
-      : Math.ceil(
-          (new Date(application.deadline + "T00:00:00") - new Date(new Date().toDateString())) / (1000 * 60 * 60 * 24)
-        ) <= 3
-      ? " ⚠️ Deadline approaching"
-      : ""}
-  </p>
-)}
+        <span className={`status-badge ${application.status.toLowerCase()}`}>
+          {application.status}
+        </span>
+      </div>
 
-      <button onClick={() => handleEdit(application)}>Edit</button>
-      <button onClick={() => handleDelete(application.id)}>Delete</button>
+      <div className="application-details">
+        {application.jobUrl && (
+          <p>
+            <strong>Job Link:</strong>{" "}
+            <a href={application.jobUrl} target="_blank" rel="noopener noreferrer" className="job-link">
+              View Job Posting ↗
+            </a>
+          </p>
+        )}
+
+        <p><strong>Platform:</strong> {application.platform}</p>
+        <p><strong>Applied:</strong> {application.appliedDate || "Not specified"}</p>
+
+        {application.deadline && (
+          <p><strong>Deadline:</strong> {application.deadline}</p>
+        )}
+
+        {application.interviewDate && (
+          <p>
+            <strong>Interview:</strong>{" "}
+            {new Date(application.interviewDate).toLocaleString()}
+          </p>
+        )}
+      </div>
+
+      <div className="application-card-actions">
+        <button onClick={() => handleEdit(application)}>Edit</button>
+        <button onClick={() => handleDelete(application.id)}>Delete</button>
+      </div>
+
     </div>
   ))
 )}
-    </div>
+</div>
   );
 }
 
