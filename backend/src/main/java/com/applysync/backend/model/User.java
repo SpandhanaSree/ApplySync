@@ -12,6 +12,29 @@ public class User {
     @Id
     private String id;
 
+    private String name;
+    private String email;
+    private String passwordHash;
+    private LocalDateTime createdAt;
+
+    // Additional profile details
+    private String phone;
+    private String location;
+    private String college;
+    private String role = "Student";
+
+    // No-argument constructor
+    public User() {
+    }
+
+    // Parameterized constructor
+    public User(String name, String email, String passwordHash) {
+        this.name = name;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.createdAt = LocalDateTime.now();
+    }
+
     public String getId() {
         return id;
     }
@@ -52,20 +75,35 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    // No-argument constructor
-    public User() {
+    public String getPhone() {
+        return phone;
     }
 
-    // Parameterized constructor
-    public User(String name, String email, String passwordHash) {
-        this.name = name;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.createdAt = LocalDateTime.now();
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    private String name;
-    private String email;
-    private String passwordHash;
-    private LocalDateTime createdAt;
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
