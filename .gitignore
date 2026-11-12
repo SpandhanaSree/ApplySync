@@ -1,0 +1,13 @@
+# Local configuration and secrets
+backend/src/main/resources/application-local.properties
+
+# Java / Maven
+**/target/
+
+# Node / React
+frontend/node_modules/
+frontend/dist/
+
+# Environment files
+.env
+.env.*
